@@ -4,19 +4,13 @@
 
 (ns euler.003)
 
-(defn getEvens [n]
-  (->>
-    (range 3 n)
-    (filter even?)
-    (into [])))
-
 (defn prime-factors [n]
-  (reduce
-    (fn [primes num]
-      (if (some zero? (map (partial mod num) primes))
-        primes
-        (conj primes num)))
-    [2] n))
+  (loop [n n divisor 2 factors []]
+    (if (< n 2)
+    factors
+    (if (zero? (rem n divisor))
+      (recur (/ n divisor) divisor (conj factors divisor))
+      (recur n (inc divisor) factors)))))
 
 (defn -main [& args]
-  (print (apply max (prime-factors (getEvens 50)))))
+  (print (apply max (prime-factors 600851475143))))
