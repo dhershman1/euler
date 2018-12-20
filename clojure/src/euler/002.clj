@@ -3,11 +3,8 @@
 
 (ns euler.002)
 
-(defn genFib []
-  (map first (iterate (fn [[a b]] [b (+ a b)]) [1 2])))
-
 (defn -main [& args]
   (prn
    (reduce + (filter even? (take-while
                             (partial > 4000000)
-                            (genFib))))))
+                            (map first (iterate (fn [[a b]] [b (+ a b)]) [1 2])))))))
