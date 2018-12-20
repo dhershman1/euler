@@ -13,9 +13,8 @@
         k (range 1 100)
         :let [a (- (sq m) (sq n))
               b (* 2 m n)
-              c (+ (sq m) (sq n))
-              d (+ (* k a) (* k b) (* k c))]
-        :when (= d x)]
+              c (+ (sq m) (sq n))]
+        :when (= (+ (* k a) (* k b) (* k c)) x)]
     (* a b c)))
 
 (defn -main [& args]
