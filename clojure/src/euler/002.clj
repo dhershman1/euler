@@ -7,7 +7,7 @@
   (map first (iterate (fn [[a b]] [b (+ a b)]) [1 2])))
 
 (defn -main [& args]
-  (print
-    (reduce + (filter even? (take-while
-      (partial > 4000000)
-      (genFib))))))
+  (prn
+   (reduce + (filter even? (take-while
+                            (partial > 4000000)
+                            (genFib))))))

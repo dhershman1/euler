@@ -6,10 +6,10 @@
 
 (defn prime-factors [n divisor factors]
   (if (< n 2)
-  factors
-  (if (zero? (rem n divisor))
-    #(prime-factors (/ n divisor) divisor (conj factors divisor))
-    #(prime-factors n (inc divisor) factors))))
+    factors
+    (if (zero? (rem n divisor))
+      #(prime-factors (/ n divisor) divisor (conj factors divisor))
+      #(prime-factors n (inc divisor) factors))))
 
 (defn -main [& args]
-  (print (apply max (trampoline prime-factors 600851475143 2 []))))
+  (prn (apply max (trampoline prime-factors 600851475143 2 []))))

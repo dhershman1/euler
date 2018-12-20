@@ -3,8 +3,8 @@
 (ns euler.001)
 
 (defn -main [& args]
-  (print
-    (reduce + (filter fn [x]
-        (or (zero? (rem x 3))
-           (zero? (rem x 5))))
-        (range 1 1000))))
+  (prn
+   (reduce + (filter fn [x]
+                     (or (zero? (rem x 3))
+                         (zero? (rem x 5))))
+           (range 1 1000))))
