@@ -4,14 +4,12 @@
 
 (ns euler.007)
 
-(defn clean-sieve
-  [step i primes]
+(defn clean-sieve [step i primes]
   (if (<= i (count primes))
     (recur step (+ i step) (assoc! primes i nil))
     primes))
 
-(defn sieve-step
-  [i primes]
+(defn sieve-step [i primes]
   (if (< i (count primes))
     (recur (+ 2 i)
            (if (nil? (primes i)) primes (clean-sieve (* 2 i) (* i i) primes)))
