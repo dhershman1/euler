@@ -4,13 +4,12 @@
 
 (ns euler.003)
 
-(defn prime-factors [n]
-  (loop [n n divisor 2 factors []]
-    (if (< n 2)
-    factors
-    (if (zero? (rem n divisor))
-      (recur (/ n divisor) divisor (conj factors divisor))
-      (recur n (inc divisor) factors)))))
+(defn prime-factors [n divisor factors]
+  (if (< n 2)
+  factors
+  (if (zero? (rem n divisor))
+    #(prime-factors (/ n divisor) divisor (conj factors divisor))
+    #(prime-factors n (inc divisor) factors))))
 
 (defn -main [& args]
-  (print (apply max (prime-factors 600851475143))))
+  (print (apply max (trampoline prime-factors 600851475143 2 []))))
