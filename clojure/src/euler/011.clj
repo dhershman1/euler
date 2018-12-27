@@ -2,7 +2,7 @@
 ; Taking a 20 x 20 grid find the greatest product of
 ; four adjacent numbers in the same direction (up, down, left, right, or diagonally)
 
-; This is a heavy WIP I can't seem to getit working just yet ¯\_(ツ)_/¯
+; This doesn't work yet ¯\_(ツ)_/¯
 (ns euler.011)
 
 ; (def grid "08022297381500400075040507785212507791084949994017811857608717409843694804566200814931735579142993714067538830034913366552709523046011426924685601325671370236912231167151676389419236542240402866331380244732609903450244753353783684203517125032988128642367102638406759547066183864706726206802621220956394396308409166499421245558056673992697177878968314883489637221362309750076442045351400613397343133957817532822753167159403800462161409535692163905429635314755588824001754243629855786560048357189070544443744602158515417581980816805944769287392138652177704895540045208839735991607975732162626793327986688366887576220720346336746551232639353690442167338253911249472180846293240627636206936417230238834629969826759857404361620733529783190017431497148868116235705540170547183515469169233486143520189196748")
@@ -47,22 +47,21 @@
         colmax (- width len)
         loopvec (range len)]
     (apply max
-      (flatten
-        (for [row (range height)
-              col (range width)]
-          [(if (> row rowmax) 0
-            (reduce * (for [i loopvec]
-                        (value-at grid (+ row i) col))))
-          (if (> col colmax) 0
-            (reduce * (for [i loopvec]
-                        (value-at grid row (+ col i)))))
-          (if (or (> row rowmax) (> col colmax)) 0
-            (reduce * (for [i loopvec]
-                        (value-at grid (+ row i) (+ col i)))))
-          (if (or (> row rowmax) (< col colmin)) 0
-            (reduce * (for [i loopvec]
-                        (value-at grid (+ row i) (- col i)))))])))))
-
+           (flatten
+            (for [row (range height)
+                  col (range width)]
+              [(if (> row rowmax) 0
+                   (reduce * (for [i loopvec]
+                               (value-at grid (+ row i) col))))
+               (if (> col colmax) 0
+                   (reduce * (for [i loopvec]
+                               (value-at grid row (+ col i)))))
+               (if (or (> row rowmax) (> col colmax)) 0
+                   (reduce * (for [i loopvec]
+                               (value-at grid (+ row i) (+ col i)))))
+               (if (or (> row rowmax) (< col colmin)) 0
+                   (reduce * (for [i loopvec]
+                               (value-at grid (+ row i) (- col i)))))])))))
 
 (prn (answer))
 ; (def n-grid (map (fn [x] (Character/getNumericValue x)) str-grid))
