@@ -13,7 +13,7 @@
 
 (defn get-triangular [f]
   (loop [n 0 curr 1]
-    (if (> (count (find-divisor n)) 500)
+    (if (> (count (find-divisor n)) f)
       n
       (recur (+ n curr) (inc curr)))))
 
