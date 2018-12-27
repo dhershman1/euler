@@ -4,9 +4,9 @@
 (ns euler.012)
 
 (defn find-divisor [n]
-  (flatten (distinct (for [x (range 1 (Math/sqrt n))
-                           :when (zero? (rem n x))]
-                       [x (/ n x)]))))
+  (flatten (for [x (range 1 (Math/sqrt n))
+                 :when (zero? (rem n x))]
+             [x (/ n x)])))
 
 (defn get-triangular [f]
   (loop [n 0 curr 1]
