@@ -3,12 +3,9 @@
 
 (ns euler.012)
 
-(defn is-divisor? [main n]
-  (= 0 (rem main n)))
-
 (defn find-divisor [n]
   (flatten (distinct (for [x (range 1 (Math/sqrt n))
-                           :when (is-divisor? n x)]
+                           :when (zero? (rem n x))]
                        [x (/ n x)]))))
 
 (defn get-triangular [f]
