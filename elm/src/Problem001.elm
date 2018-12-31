@@ -16,4 +16,4 @@ findMultiples n =
 
 sumMultiples : Int -> Int
 sumMultiples n =
-    List.foldl (+) 0 (findMultiples n)
+    List.sum (findMultiples n)

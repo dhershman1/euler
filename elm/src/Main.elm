@@ -4,6 +4,7 @@ import Browser
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Problem001 exposing (sumMultiples)
+import Problem002 exposing (sumOfEvenTerms)
 
 
 
@@ -17,12 +18,15 @@ type Msg
 
 type alias Model =
     { resOne : String
+    , resTwo : String
     }
 
 
 init : Model
 init =
-    { resOne = String.fromInt (sumMultiples 999) }
+    { resOne = String.fromInt (sumMultiples 999)
+    , resTwo = Debug.toString (sumOfEvenTerms 4000000)
+    }
 
 
 update : Msg -> Model -> Model
@@ -34,7 +38,7 @@ update msg model =
 
 titleStyle : List (Attribute msg)
 titleStyle =
-    [ style "font-size" "1rem"
+    [ style "font-size" "1.2rem"
     , style "font-weight" "600"
     ]
 
@@ -43,7 +47,9 @@ view : Model -> Html Msg
 view model =
     div []
         [ span titleStyle [ text "Problem 001: " ]
-        , span [] [ text model.resOne ]
+        , p [] [ text model.resOne ]
+        , span titleStyle [ text "Problem 002:" ]
+        , p [] [ text model.resTwo ]
         ]
 
 
