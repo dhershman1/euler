@@ -7,27 +7,27 @@ module Problem002 exposing (sumOfEvenTerms)
 
 even : Int -> Bool
 even n =
-    remainderBy n 2 == 0
+    remainderBy 2 n == 0
 
 
+buildSeq : Int -> List Int -> List Int
+buildSeq to li =
+    let
+        vals =
+            List.take 2 li
 
--- buildSeq : Int -> Int -> List Int -> List Int
--- buildSeq to n li =
---     if n == to then
---         li
---     else
---         buildSeq to n (List.append (List.singleton (List.head li)) li)
+        sum =
+            List.sum vals
+    in
+    if sum >= to then
+        li
+
+    else
+        buildSeq to (sum :: li)
 
 
-evenTerms : Int -> List Int
-evenTerms n =
-    List.filter even (buildSeq n 1 [ 1 ])
-
-
-sumOfEvenTerms : Int -> List Int
+sumOfEvenTerms : Int -> Int
 sumOfEvenTerms n =
-    evenTerms n
-
-
-
--- List.foldl (+) 0 (evenTerms n)
+    buildSeq n [ 2, 1 ]
+        |> List.filter even
+        |> List.sum

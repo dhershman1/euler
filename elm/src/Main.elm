@@ -25,7 +25,7 @@ type alias Model =
 init : Model
 init =
     { resOne = String.fromInt (sumMultiples 999)
-    , resTwo = Debug.toString (sumOfEvenTerms 4000000)
+    , resTwo = String.fromInt (sumOfEvenTerms 4000000)
     }
 
 
