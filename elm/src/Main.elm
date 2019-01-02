@@ -5,6 +5,7 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Problem001 exposing (sumMultiples)
 import Problem002 exposing (sumOfEvenTerms)
+import Problem003 exposing (largestPrimeFactor)
 
 
 
@@ -19,6 +20,7 @@ type Msg
 type alias Model =
     { resOne : String
     , resTwo : String
+    , resThree : String
     }
 
 
@@ -26,6 +28,7 @@ init : Model
 init =
     { resOne = String.fromInt (sumMultiples 999)
     , resTwo = String.fromInt (sumOfEvenTerms 4000000)
+    , resThree = String.fromInt (largestPrimeFactor 600851475143)
     }
 
 
@@ -50,6 +53,8 @@ view model =
         , p [] [ text model.resOne ]
         , span titleStyle [ text "Problem 002:" ]
         , p [] [ text model.resTwo ]
+        , span titleStyle [ text "Problem 003:" ]
+        , p [] [ text model.resThree ]
         ]
 
 
