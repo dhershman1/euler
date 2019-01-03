@@ -23,8 +23,8 @@
      (chain-length (next-term n) (+ len 1)))))
 
 (defn find-longest-chain [n]
-  (let [len (map chain-length (range 2 n 1))]
+  (let [len (map chain-length (range 2 n))]
     (+ (.indexOf len (apply max len)) 2)))
 
 (defn -main [& args]
-  (time (prn (find-longest-chain 1000000))))
+  (time (prn (find-longest-chain 1e6))))
