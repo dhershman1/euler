@@ -13,8 +13,4 @@
   (apply + (map (fn [x] (Character/getNumericValue x)) (str n))))
 
 (defn -main [& args]
-<<<<<<< HEAD
   (time (prn (sum-digits (pow 2 1000)))))
-=======
-  (time (prn (sum-digits (pow 2 1000)))))
->>>>>>> f7d785ebca0763c5b7e2c3ba506933acc2789478
