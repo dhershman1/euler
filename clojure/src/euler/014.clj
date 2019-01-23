@@ -10,21 +10,13 @@
 (defn next-term [n]
   (if (even? n)
     (/ n 2)
-    (+ (* 3 n) 1)))
+    (inc (* 3 n))))
 
-(defn chain-length
-  ([n]
-   (if (= n 1)
-     1
-     (chain-length (next-term n) 2)))
-  ([n len]
-   (if (= n 1)
-     len
-     (chain-length (next-term n) (+ len 1)))))
-
-(defn find-longest-chain [n]
-  (let [len (map chain-length (range 2 n))]
-    (+ (.indexOf len (apply max len)) 2)))
+(defn chain-length [n]
+  (if (= n 1) 1
+      (inc (chain-length (next-term n)))))
 
 (defn -main [& args]
-  (time (prn (find-longest-chain 1e6))))
+  (time (prn (first
+              (apply max-key second
+                     (map #(list % (chain-length %)) (range 1 1000000)))))))
