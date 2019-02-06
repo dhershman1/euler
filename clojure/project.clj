@@ -5,7 +5,7 @@
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [org.clojure/math.numeric-tower "0.0.4"]]
-  :plugins [[lein-cljfmt "0.6.3"]]
+  :resource-paths ["resources"]
   :main ^:skip-aot euler.core
   :target-path "target/%s"
-:profiles {:uberjar {:aot :all}})
+  :profiles {:uberjar {:aot :all}})
