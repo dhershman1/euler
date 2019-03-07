@@ -11,15 +11,24 @@
 ; A number is called "deficient" if the sume of its proper divisors is less than the number
 ; It is called "abundant" if this sum exceeds the number
 
-(defn get-proper-divisors [n]
-  (filter #(zero? (mod n %)) (range 2 (Math/sqrt n))))
-
-(defn proper-divisors-sum [n]
-  (prn (filter not-empty (get-proper-divisors n)))
-  (reduce + 1 (get-proper-divisors n)))
+(defn sum-of-proper-divisors [n]
+  (let [divs (filter #(zero? (mod n %)) (range 2 (Math/sqrt n)))]
+    (reduce + 1 (set (concat
+                      (let [isq (int (Math/sqrt n))]
+                        (if (= n (* isq isq)) [isq] []))
+                      divs
+                      (map #(/ n %) divs))))))
 
 (defn abundant? [n]
-  (> (proper-divisors-sum n) n))
+  (> (sum-of-proper-divisors n) n))
 
+(defn abundant-sum? [n abundant]
+  (some #(abundant (- n %))
+        (take-while #(< % n) abundant)))
+
+;; Elapsed time: 4189.666082 msecs
 (defn -main []
-  (time (prn (filter abundant? (range 12 40)))))
+  (time (prn (let [abundant (into (sorted-set) (filter abundant? (range 12 28124)))]
+               (->> (range 1 28124)
+                    (remove #(abundant-sum? % abundant))
+                    (reduce +))))))
